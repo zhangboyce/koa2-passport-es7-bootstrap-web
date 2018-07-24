@@ -1,0 +1,12 @@
+{
+  "host": "127.0.0.1:9876",
+  "port": 9876,
+  "mongo": {
+    "boom":"mongodb://boom:boom@dds-bp13d9353a884c541.mongodb.rds.aliyuncs.com:3717/boom",
+    "raw":"mongodb://raw:raw@dds-bp17568c88318c341.mongodb.rds.aliyuncs.com:3717/raw"
+  },
+  "es": "10.31.130.75:9200",
+  "redis": {
+    "spider": "redis://8f2f23a8ab9a47ba.m.cnhza.kvstore.aliyuncs.com:6379/67?password=e3aEqW8834Sra4i"
+  }
+}
