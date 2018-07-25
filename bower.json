@@ -1,0 +1,22 @@
+{
+  "name": "cce-ato-data-manager",
+  "description": "cce ato data manager platform",
+  "main": "lib/app.js",
+  "authors": [
+    "Boyce <Zhangboyce@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jQuery": ""
+  }
+}

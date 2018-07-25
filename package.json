@@ -7,12 +7,14 @@
     "build": "NODE_ENV=production webpack --config webpack.config.js --progress",
     "watch": "NODE_ENV=development webpack --config webpack.config.js --watch --progress",
     "start": "babel-node server/app.js",
-    "build-server": "babel server --out-dir lib"
+    "build-server": "babel server --out-dir lib",
+    "bower": "./node_modules/bower/bin/bower install"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "webpack": "^2.5.1",
+    "bower": "^1.8.4",
     "style-loader": "^0.13.1",
     "json-loader": "^0.5.4",
     "css-loader": "^0.26.1",
@@ -69,6 +71,7 @@
     "redux-thunk": "^2.2.0",
     "request-promise": "^4.2.1",
     "swig": "^1.4.2",
-    "co-views": "^2.1.0"
+    "co-views": "^2.1.0",
+    "app-root-path": "^2.1.0"
   }
 }

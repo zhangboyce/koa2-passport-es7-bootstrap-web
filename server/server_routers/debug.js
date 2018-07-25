@@ -9,6 +9,7 @@ router.get('/debugx', authMiddleware, async (ctx, next) => {
 
 router.get('/debug', async (ctx, next) => {
     console.log('sasasa');
+    ctx.throw(403);
     ctx.body = 'debug';
 });
 

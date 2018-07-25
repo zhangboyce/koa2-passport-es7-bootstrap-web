@@ -14,7 +14,7 @@ app.use(async (ctx, next) => {
         await next();
     } catch (e) {
         console.log(ctx.path, ctx.query, e, e.stack);
-        await ctx.render('404');
+        await ctx.render('error', { stack: e.stack });
     }
 });
 
@@ -35,7 +35,7 @@ serverRouters(app);
 
 let router = new KoaRouter();
 router.get('/*', async (ctx, next) => {
-    await ctx.render('index');
+    await ctx.render('index', { test: 'test' });
 });
 app.use(router.routes());
 app.use(router.allowedMethods());
