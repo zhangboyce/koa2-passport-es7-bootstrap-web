@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import Header from './Header.jsx';
 
-class App extends Component {
+export default class App extends Component {
     render() {
         return (
-            <div>{ this.props.children }</div>
+            <div>
+                <Header />
+                { this.props.children }
+            </div>
         )
     }
 }
-
-export default connect(state => {
-    return {
-        user: state.user
-    }
-}, {
-
-})(App);

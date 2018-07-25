@@ -8,6 +8,13 @@ import rootPath from 'app-root-path';
 import SwigRender from 'koa-swig';
 import config from 'config';
 
+import ESSources from './common/ESSources';
+import MongoSources from './common/MongoSources';
+import RedisSources from './common/RedisSources';
+
+const __config__ = require('../common/__config__');
+__config__.init(config);
+
 const app = new Koa();
 app.use(async (ctx, next) => {
     try {
@@ -20,8 +27,7 @@ app.use(async (ctx, next) => {
 
 app.use(koaStaticServer({
     rootDir: 'public',
-    rootPath: '/static',
-    maxage: 10000000
+    rootPath: '/static'
 }));
 
 app.context.render = co.wrap(SwigRender({
@@ -35,20 +41,14 @@ serverRouters(app);
 
 let router = new KoaRouter();
 router.get('/*', async (ctx, next) => {
-    await ctx.render('index', { test: 'test' });
+    await ctx.render('index', { __config__: { host: config.get('host') } });
 });
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-///* mongo */
-//const mongoose = require('mongoose');
-//mongoose.Promise = global.Promise;
-//const mongo_uri = nodeConfig.get('mongo') || 'mongodb://localhost:27017/boom';
-//mongoose.connect(mongo_uri);
-//
-///* elasticsearch */
-//const esFactory = require('./common/ESClientFactory');
-//esFactory.init({ host: nodeConfig.get('es') || 'localhost:9200' });
+ESSources.init();
+MongoSources.init();
+RedisSources.init();
 
 const port = config.get('port');
 app.listen(9876);

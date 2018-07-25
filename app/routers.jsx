@@ -8,7 +8,7 @@ import HomeContainer from './containers/HomeContainer.jsx';
 
 module.exports = (
     <Route component={ App }>
-        <Route path="/home" component={ HomeContainer } >
+        <Route path="/" component={ HomeContainer } >
         </Route>
     </Route>
 );

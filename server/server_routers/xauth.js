@@ -5,7 +5,7 @@ const router = new KoaRouter();
 router.post('/xauth/login', function (ctx, next) {
     return passport.authenticate('local', function (err, user, info, status) {
         if (user) {
-            ctx.redirect('index');
+            ctx.redirect('/');
             return ctx.login(user)
         } else {
             ctx.body = info
