@@ -8,7 +8,10 @@
     "watch": "NODE_ENV=development webpack --config webpack.config.js --watch --progress",
     "start": "babel-node server/app.js",
     "build-server": "babel server --out-dir lib",
-    "bower": "./node_modules/bower/bin/bower install"
+    "bower": "./node_modules/bower/bin/bower install",
+
+    "crawler_weibo": "babel-node scripts/weibo/index.js",
+    "sensitive_words": "babel-node scripts/weibo/sensitive_words.js"
   },
   "author": "",
   "license": "ISC",

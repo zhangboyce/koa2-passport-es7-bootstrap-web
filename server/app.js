@@ -15,41 +15,45 @@ import RedisSources from './common/RedisSources';
 const __config__ = require('../common/__config__');
 __config__.init(config);
 
-const app = new Koa();
-app.use(async (ctx, next) => {
-    try {
-        await next();
-    } catch (e) {
-        console.log(ctx.path, ctx.query, e, e.stack);
-        await ctx.render('error', { stack: e.stack });
-    }
-});
 
-app.use(koaStaticServer({
-    rootDir: 'public',
-    rootPath: '/static'
-}));
 
-app.context.render = co.wrap(SwigRender({
-    root: path.join(rootPath.path, 'public/views'),
-    autoescape: true,
-    cache: false,
-    ext: 'html'
-}));
+(async function(){
+    await ESSources.init();
+    await MongoSources.init();
+    await RedisSources.init();
 
-serverRouters(app);
+    const app = new Koa();
+    app.use(async (ctx, next) => {
+        try {
+            await next();
+        } catch (e) {
+            console.log(ctx.path, ctx.query, e, e.stack);
+            await ctx.render('error', { stack: e.stack });
+        }
+    });
 
-let router = new KoaRouter();
-router.get('/*', async (ctx, next) => {
-    await ctx.render('index', { __config__: { host: config.get('host') } });
-});
-app.use(router.routes());
-app.use(router.allowedMethods());
+    app.use(koaStaticServer({
+        rootDir: 'public',
+        rootPath: '/static'
+    }));
 
-ESSources.init();
-MongoSources.init();
-RedisSources.init();
+    app.context.render = co.wrap(SwigRender({
+        root: path.join(rootPath.path, 'public/views'),
+        autoescape: true,
+        cache: false,
+        ext: 'html'
+    }));
 
-const port = config.get('port');
-app.listen(9876);
-console.log('cce-ato-data-manager listening on port ' + 9876);
+    serverRouters(app);
+
+    let router = new KoaRouter();
+    router.get('/*', async (ctx, next) => {
+        await ctx.render('index', { __config__: { host: config.get('host') } });
+    });
+    app.use(router.routes());
+    app.use(router.allowedMethods());
+
+    const port = config.get('port');
+    app.listen(9876);
+    console.log('cce-ato-data-manager listening on port ' + 9876);
+}());

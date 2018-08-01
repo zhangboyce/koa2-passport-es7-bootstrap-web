@@ -19,6 +19,15 @@ export default {
         await __init1__(__init0__)(mongoConfig);
     },
     get: function (key = 'default') {
+        console.log('key', key);
+        console.log('dbCol[key]', dbCol[key]);
         return dbCol[key];
+    },
+    getAll: function() {
+
+        let c = Object.assign({}, dbCol);
+
+        console.log('c', c)
+        return c;
     }
 }

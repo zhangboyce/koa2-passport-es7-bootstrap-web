@@ -4,6 +4,7 @@ import bodyParser from 'koa-bodyparser';
 import debug from './debug';
 import xauth from './xauth';
 import user from './user';
+import wechat from './wechat';
 
 export default (app) => {
     app.proxy = true;
@@ -15,4 +16,5 @@ export default (app) => {
     app.use(debug.routes());
     app.use(user.routes());
     app.use(xauth.routes());
+    app.use(wechat.routes());
 }

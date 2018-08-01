@@ -12,8 +12,8 @@ class HomeContainer extends Component {
 
     render() {
         return (
-            <div className="container-fluid" id="home">
-                Homesasa
+            <div>
+                Instram
             </div>
         );
     }
