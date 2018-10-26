@@ -9,9 +9,12 @@
     "start": "babel-node server/app.js",
     "build-server": "babel server --out-dir lib",
     "bower": "./node_modules/bower/bin/bower install",
-
     "crawler_weibo": "babel-node scripts/weibo/index.js",
-    "sensitive_words": "babel-node scripts/weibo/sensitive_words.js"
+    "crawler_weibo_by_keywords": "babel-node scripts/weibo/crawlByKeyword.js",
+    "sensitive_words": "babel-node scripts/weibo/sensitive_words.js",
+    "jieba_words": "babel-node scripts/weibo/jieba_words.js",
+    "douban_tags": "babel-node scripts/douban/tags.js",
+    "douban_articles": "babel-node scripts/douban/articles.js"
   },
   "author": "",
   "license": "ISC",
@@ -75,6 +78,9 @@
     "request-promise": "^4.2.1",
     "swig": "^1.4.2",
     "co-views": "^2.1.0",
+    "isomorphic-fetch": "^2.2.1",
+    "node-fetch": "^2.2.0",
+    "nodejieba": "^2.3.0",
     "app-root-path": "^2.1.0"
   }
 }
